@@ -6,8 +6,8 @@ def conectar():
         conn = mysql.connector.connect(
             host='localhost',
             user='root',
-            password='',
-            database='SmartDB'
+            password='root',
+            database='smartdb'
         )
         if conn.is_connected():
             return conn
