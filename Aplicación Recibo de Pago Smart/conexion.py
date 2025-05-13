@@ -1,14 +1,16 @@
 import mysql.connector
+from mysql.connector import Error
 
 def conectar():
-    conn = mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='root',
-        database='smartdb'
-    )
-    conn.autocommit = True
-    return conn
-
-def desconectar(conn):
-    conn.close()
+    try:
+        conn = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            password='',
+            database='SmartDB'
+        )
+        if conn.is_connected():
+            return conn
+    except Error as e:
+        print(f"Error al conectar a la base de datos: {e}")
+        return None
