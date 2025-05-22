@@ -211,10 +211,14 @@ def insertar_Alumno():
                 dni, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, genero,
                 fecha_nacimiento, lugar_procedencia, codigo_curso, correo, celular, dni_coordinacion
             ])
+             conexion.commit()
             messagebox.showinfo("Éxito", "Alumno ingresado correctamente.")
         except Exception as e:
             messagebox.showerror("Error", f"Ocurrió un error al insertar el alumno: {e}")
             return
+            finally:
+    cursor.close()
+    conexion.close()
 
     def validar_fecha(fecha):
         # Validación del formato YYYY-MM-DD
