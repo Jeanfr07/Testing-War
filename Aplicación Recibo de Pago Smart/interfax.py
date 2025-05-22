@@ -5,7 +5,7 @@ from PIL import Image, ImageTk, ImageEnhance
 import mysql.connector
 from mysql.connector import Error
 import re
-
+from conexion import conectar as conectar_db 
 image = None
 photo = None
 screen_width = None
