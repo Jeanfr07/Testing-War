@@ -91,8 +91,19 @@ def eliminar_curso():
     def validar():
         codigo=codigo_entry.get().strip()
         if len(codigo) == 3:
-            messagebox.showinfo("Bien",f"Se elimino el curso '{codigo}'")
-            curso_eliminar.destroy
+    try:
+        conexion = conectar_db()
+        cursor = conexion.cursor()
+        cursor.callproc("EliminarCurso", [codigo])
+        conexion.commit()
+        messagebox.showinfo("Bien", f"Se eliminó el curso '{codigo}'")
+    except Exception as e:
+        messagebox.showerror("Error", f"No se pudo eliminar el curso: {e}")
+    finally:
+        cursor.close()
+        conexion.close()
+    curso_eliminar.destroy()
+
         else:
             messagebox.showerror("Error", "Ingrese un código valido")
     curso_eliminar=tk.Toplevel()
